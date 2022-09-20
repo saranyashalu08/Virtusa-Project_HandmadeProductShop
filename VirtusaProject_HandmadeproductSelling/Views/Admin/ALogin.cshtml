@@ -1,0 +1,62 @@
+﻿@model VirtusaProject_HandmadeproductSelling.Models.Admin
+@{
+    ViewBag.Title = "Login";
+}
+<head>
+    <style>
+        <link rel="stylesheet" href="~/Content/StyleSheet1.css">
+
+
+    </style>
+   
+</head>
+
+<div>
+    <h2>Admin Login</h2>
+    @using (Html.BeginForm())
+    {
+        
+            <form class="action" method="post">
+               
+                    <div class="container" >
+                        <table style="padding-left:500%">
+                            <tr>
+                                <tb>User Name</tb>
+                                <tb>@Html.TextAreaFor(m => m.AdminName, new { @class = "form-control", @PlaceHolder = "Admin Name" })</tb>
+                                <tb style="color:red">@Html.ValidationMessageFor(m => m.AdminName)</tb>
+                            </tr>
+                            <br />
+
+                            <tr>
+                                <tb>Password</tb>
+                                <td>@Html.PasswordFor(m => m.A_Password, new { @class = "form-control", @PlaceHolder = "Enter Password" })</td>
+                                <td style="color:red">@Html.ValidationMessageFor(m => m.A_Password)</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><input type="submit" value="Login" class="btn btn-primary"></td>
+
+                            </tr>
+
+                        </table>
+
+
+
+
+
+
+
+
+                        <div class="form-group">
+                            <p style="color:red">@ViewBag.error</p>
+                        </div>
+                    </div>
+                    <div style="align-items:center;width:100%;height:100%">
+                        <img src="~/Content/Image/crochet.jpg" alt="bg" />
+
+                    </div>
+              
+        </form>
+
+    }
+</div>
+

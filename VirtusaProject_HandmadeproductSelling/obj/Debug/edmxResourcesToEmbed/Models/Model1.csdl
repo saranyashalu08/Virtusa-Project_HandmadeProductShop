@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Handmade_ProductModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="A_Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK__Category__add_id__160F4887" FromRole="Admin" ToRole="Category" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__addadmi__3D2915A8" FromRole="Admin" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Cat_ID" />
+    </Key>
+    <Property Name="Cat_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cat_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="add_id" Type="Int32" />
+    <Property Name="Cat_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cat_status" Type="Int32" />
+    <NavigationProperty Name="Admin" Relationship="Self.FK__Category__add_id__160F4887" FromRole="Category" ToRole="Admin" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__add_pid__3C34F16F" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="P_ID" />
+    </Key>
+    <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="P_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="P_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="P_desc" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="P_price" Type="Int32" />
+    <Property Name="P_quantity" Type="Int32" />
+    <Property Name="add_pid" Type="Int32" />
+    <Property Name="addadmin_pid" Type="Int32" />
+    <NavigationProperty Name="Admin" Relationship="Self.FK__Product__addadmi__3D2915A8" FromRole="Product" ToRole="Admin" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Product__add_pid__3C34F16F" FromRole="Product" ToRole="Category" />
+    <Property Name="adduser_pid" Type="Int32" />
+    <NavigationProperty Name="Registration" Relationship="Handmade_ProductModel.FK__Product__adduser__4D5F7D71" FromRole="Product" ToRole="Registration" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="custID" />
+    </Key>
+    <Property Name="custID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="f_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="l_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="Int64" />
+    <Property Name="c_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Con_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Handmade_ProductModel.FK__Product__adduser__4D5F7D71" FromRole="Registration" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Category__add_id__160F4887">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="AdminID" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="add_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__addadmi__3D2915A8">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="AdminID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="addadmin_pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__add_pid__3C34F16F">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Cat_ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="add_pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Handmade_ProductEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Registrations" EntityType="Self.Registration" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK__Category__add_id__160F4887" Association="Self.FK__Category__add_id__160F4887">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__addadmi__3D2915A8" Association="Self.FK__Product__addadmi__3D2915A8">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__add_pid__3C34F16F" Association="Self.FK__Product__add_pid__3C34F16F">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__adduser__4D5F7D71" Association="Handmade_ProductModel.FK__Product__adduser__4D5F7D71">
+      <End Role="Registration" EntitySet="Registrations" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK__Product__adduser__4D5F7D71">
+    <End Type="Handmade_ProductModel.Registration" Role="Registration" Multiplicity="0..1" />
+    <End Type="Handmade_ProductModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="custID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="adduser_pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

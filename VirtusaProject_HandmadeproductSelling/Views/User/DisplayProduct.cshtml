@@ -1,0 +1,152 @@
+﻿@using PagedList.Mvc
+@model  PagedList.IPagedList<VirtusaProject_HandmadeproductSelling.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View Product</title>
+</head>
+<body style="background-color: #FA8BFF; background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%); ">
+    <h1 style="text-align-last:center;font-family:'Times New Roman', Times, serif;color:blueviolet">Products</h1>
+
+
+    <div class="row" style="margin-bottom:40px">
+
+        <div class="col-lg-8 col-md-8">
+
+            @using (Html.BeginForm("DisplayProduct", "User"))
+            {
+                <div class="navbar-form">
+
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" placeholder="Search" name="search" id="search">
+                    </div>
+                    <button type="submit" class="btn btn-success">Search</button>
+                </div>
+            }
+
+
+        <div class="row">
+            @{int x = 0; }
+
+
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    x++;
+
+
+                    <div class="col-lg-4 col-md-4" style="height:220px;margin-top:160px">
+                        <img src="@Url.Content(item.P_image)" style=" height:130%;width:100%" />
+                        <br />
+                        <h4 style="color:#808080; font-family:'Arial Rounded MT';text-align:center;margin-top:20px"> @Html.ActionLink(@item.P_name, "DisplayDetails", new { id = @item.P_ID })</h4>
+                        <br />
+
+
+
+                    </div>
+
+
+
+                }
+            }
+            <h3>@x Results found  </h3>
+            <div style="margin-top:370px">
+                <div id="container" style="margin-left: 100px">
+                    <p></p>
+                    <p></p>
+                    <div style="margin-left: 400px">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("DisplayProduct", new { page }))
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            @*<div style="margin-top:370px">
+                <div id="container" style="margin-left: 100px">
+                    <p></p>
+                    <p></p>
+                    <div style="margin-left: 400px">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("DisplayProduct", new { page }))
+                    </div>
+                </div>
+            </div>*@
+        </div>
+
+
+
+        </div>
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*<div>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <div style="height: 220px; margin-top: 160px">
+                        <img src="@Url.Content(item.P_image)" style="height:100%;width:70%;padding-left:25%" />
+                        <br />
+                        <h4 style="color:#808080; font-family:'Arial Rounded MT';text-align:center;margin-top:20px">@Html.ActionLink(@item.P_name, "DisplayDetails", new { id = item.P_ID })</h4>
+                        <h6 style="color:#808080; font-family:'Arial Rounded MT';text-align:center;margin-top:20px">Price:Rs @item.P_price</h6>
+                        <h6 style="color:#808080; font-family:'Arial Rounded MT';text-align:center;margin-top:20px">@item.P_desc</h6>
+
+                        <br />
+
+
+                    </div>
+                }
+            }
+            <div style="margin-top:370px">
+                <div id="container" style="margin-left: 100px">
+                    <p></p>
+                    <p></p>
+                    <div style="margin-left: 400px">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("DisplayProduct", new { page }))
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+
+
+</body>
+</html>
+

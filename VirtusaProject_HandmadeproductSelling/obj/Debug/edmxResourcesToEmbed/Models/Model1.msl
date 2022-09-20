@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Handmade_ProductModelStoreContainer" CdmEntityContainer="Handmade_ProductEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="Handmade_ProductModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+          <ScalarProperty Name="A_Password" ColumnName="A_Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="Handmade_ProductModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Cat_ID" ColumnName="Cat_ID" />
+          <ScalarProperty Name="Cat_name" ColumnName="Cat_name" />
+          <ScalarProperty Name="add_id" ColumnName="add_id" />
+          <ScalarProperty Name="Cat_img" ColumnName="Cat_img" />
+          <ScalarProperty Name="Cat_status" ColumnName="Cat_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="Handmade_ProductModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="adduser_pid" ColumnName="adduser_pid" />
+          <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+          <ScalarProperty Name="P_name" ColumnName="P_name" />
+          <ScalarProperty Name="P_image" ColumnName="P_image" />
+          <ScalarProperty Name="P_desc" ColumnName="P_desc" />
+          <ScalarProperty Name="P_price" ColumnName="P_price" />
+          <ScalarProperty Name="P_quantity" ColumnName="P_quantity" />
+          <ScalarProperty Name="add_pid" ColumnName="add_pid" />
+          <ScalarProperty Name="addadmin_pid" ColumnName="addadmin_pid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registrations">
+      <EntityTypeMapping TypeName="Handmade_ProductModel.Registration">
+        <MappingFragment StoreEntitySet="Registration">
+          <ScalarProperty Name="custID" ColumnName="custID" />
+          <ScalarProperty Name="f_name" ColumnName="f_name" />
+          <ScalarProperty Name="l_name" ColumnName="l_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="c_password" ColumnName="c_password" />
+          <ScalarProperty Name="Con_password" ColumnName="Con_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Handmade_ProductModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

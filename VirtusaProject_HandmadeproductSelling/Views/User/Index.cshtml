@@ -1,0 +1,66 @@
+﻿@using PagedList.Mvc
+@model  PagedList.IPagedList<VirtusaProject_HandmadeproductSelling.Models.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout1.cshtml";
+
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewCategory</title>
+</head>
+<body>
+    <div style=" background-color: #00DBDE; background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%); ">
+
+
+
+    <h1 style="text-align-last: center; color: darkblue; background-color: #00DBDE; background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);; font-family: 'Times New Roman', Times, serif">HANDMADE PRODUCT SHOP</h1>
+        <h5 style="text-align:center; color:black;font-family:'Times New Roman', Times, serif">A Complete Place for Sell and Buy Handmade Products</h5>
+       <br />
+        <br />
+        <br />
+        <h3 style="text-align:center;color:black">Available Categories</h3>
+    <div >
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <div style="height: 220px; margin-top: 160px">
+                    <img src="@Url.Content(item.Cat_img)" style="height:100%;width:70%;padding-left:25%" />
+                    <br />
+                    <h4 style="color:black; font-family:'Arial Rounded MT';text-align:center;margin-top:20px">@item.Cat_name</h4>
+                    <br />
+
+
+                </div>
+            }
+        }
+        <div style="margin-top:370px">
+            <div id="container" style="margin-left: 100px">
+                <p></p>
+                <p></p>
+                <div style="margin-left: 400px">
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                    of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div>
+
+</div>
+
+
+
+
+</body>
+</html>
+
+
+
+

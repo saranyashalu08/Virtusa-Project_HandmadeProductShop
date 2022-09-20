@@ -1,0 +1,75 @@
+﻿@model VirtusaProject_HandmadeproductSelling.Models.DisplayDetails
+@{
+    ViewBag.Title = "DisplayDetails";
+    Layout = "~/Views/Shared/Layout1.cshtml";
+}
+
+<h2>DisplayDetails</h2>
+
+
+
+<style>
+    td {
+        padding: 20px;
+    }
+</style>
+
+
+<div class="col-lg-8 col-md-8">
+
+    <div>
+        <h2>@Model.P_name <small>Product-ID:@Model.P_ID</small></h2>
+    </div>
+
+    <img src="@Url.Content(@Model.P_image)" style="width:400PX; height:450PX" />
+
+    <div>
+        <h3>Prize:Rs </h3>
+        <p>@Model.P_price</p>
+    </div>
+
+    <div>
+        <h3>Description: </h3>
+        <p>@Model.P_desc</p>
+    </div>
+    <div>
+        <h3>Available Stock: </h3>
+        <p>@Model.P_quantity</p>
+    </div>
+    <div>
+        <h3>Under Category: </h3>
+        <p>@Model.Cat_name</p>
+    </div>
+
+
+
+
+    @*<tr> <td>Price: </td> <td>@Model.P_price </td> </tr>
+    <tr> <td>Category: </td> <td>@Model.Cat_name </td> </tr>*@
+
+
+
+    @*<tr>
+            <td colspan="2">
+                @if (Convert.ToInt32(Session["custID"]) == Convert.ToInt32(Model.adduser_pid))
+                {
+
+                    @Html.ActionLink("Close this Ad", "Add_Delete", new { @class = "btn btn-danger", id = Model.P_ID })
+
+
+
+                }
+            </td>
+        </tr>*@
+
+
+
+
+
+</div>
+
+
+
+
+<
+

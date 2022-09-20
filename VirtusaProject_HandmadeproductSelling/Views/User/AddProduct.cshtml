@@ -1,0 +1,131 @@
+﻿
+
+@model VirtusaProject_HandmadeproductSelling.Models.Product
+
+
+@{
+
+
+
+}
+
+
+
+
+
+
+
+
+
+<div id="main-div">
+    <div id="box" class="img-responsive">
+        @using (Html.BeginForm("AddProduct",
+                            "User",
+                            FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+        {
+            <div class="insidebox" style="background-color: #A9C9FF; background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%); ">
+                <div> <h1 style="text-align:center">Add Product</h1></div>
+
+
+
+                <div class="form-group" style="align-items:center">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                        @Html.DropDownListFor(m => m.adduser_pid, ViewBag.categorylist as SelectList, "--select--", new { @class = "form-control" })
+                    </div>
+                    <span style="color:red">   @Html.ValidationMessageFor(m => m.adduser_pid) </span>
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                        @*<asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Username" required="required"></asp:TextBox>*@
+                        @Html.TextBoxFor(m => m.P_name, new { @class = "form-control", @placeholder = "Product Name" })
+
+                    </div>
+                    <span style="color:red">   @Html.ValidationMessageFor(m => m.P_name) </span>
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                        @*<asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Username" required="required"></asp:TextBox>*@
+                        @Html.TextBoxFor(m => m.P_price, new { @class = "form-control", @placeholder = "Price" })
+
+                    </div>
+                    <span style="color:red">   @Html.ValidationMessageFor(m => m.P_price) </span>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                        @*<asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Username" required="required"></asp:TextBox>*@
+                        @Html.TextBoxFor(m => m.P_desc, new { @class = "form-control", @placeholder = "Description" })
+
+                    </div>
+                    <span style="color:red">   @Html.ValidationMessageFor(m => m.P_desc) </span>
+
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                        @*<asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Username" required="required"></asp:TextBox>*@
+                        @Html.TextBoxFor(m => m.P_quantity, new { @class = "form-control", @placeholder = "Stock" })
+
+                    </div>
+                    <span style="color:red">   @Html.ValidationMessageFor(m => m.P_quantity) </span>
+
+                </div>
+
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+
+                        <input type="file" name="P_image" id="P_image" class="form-control" required="required" />
+
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <input type="submit" value="Add" class="btn btn-success btn-block" />
+
+                </div>
+
+                <div class="form-group">
+                    <p style="color:red">@ViewBag.error</p>
+                </div>
+
+
+
+            </div>
+
+        }
+    </div>
+
+</div>
+
+
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

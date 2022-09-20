@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6e6875285843440aa5e6860acb58217b" Name="Diagram1">
+        <EntityTypeShape EntityType="Handmade_ProductModel.Admin" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Handmade_ProductModel.Category" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Handmade_ProductModel.Product" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Handmade_ProductModel.Registration" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Handmade_ProductModel.sysdiagram" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="Handmade_ProductModel.FK__Category__add_id__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="Handmade_ProductModel.FK__Product__addadmi__3D2915A8" ManuallyRouted="false" />
+        <AssociationConnector Association="Handmade_ProductModel.FK__Product__add_pid__3C34F16F" ManuallyRouted="false" />
+        <AssociationConnector Association="Handmade_ProductModel.FK__Product__adduser__4D5F7D71" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

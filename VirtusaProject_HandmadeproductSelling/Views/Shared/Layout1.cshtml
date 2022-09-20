@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+
+<head>
+
+    
+
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+
+
+</head>
+<body>
+    
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid" style="background-color: background: rgb(63,94,251); background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);width:100%;height:35%">
+            <div class="navbar-header">
+                <a class="navbar-brand" href=""> Handmade Product Shop </a>
+            </div>
+
+            
+
+
+
+            <ul class="nav navbar-nav" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color:black">
+                <li>@Html.ActionLink("Category", "Index", "User", null, new { @class = "ht" })</li>
+                <li>@Html.ActionLink("Products", "DisplayProduct", "User", null, new { @clas = "ht" })</li>
+                <li>@Html.ActionLink("Admin Login", "ALogin", "Admin", null, new { @class = "ht" })</li>
+                <li> <a href=""> About </a></li>
+                <ul class="nav navbar-nav">
+                    <li>
+                        @if (Session["custID"] != null)
+                        {
+
+
+                            @Html.ActionLink("Add Product", "AddProduct", "User", null, new { @class = "ht" })
+
+                            @*<li style="margin-top:20px;color:whitesmoke;margin-left:70px">Hello+@Session["email"]</li>*@
+
+
+                        <li style="color:whitesmoke;margin-top:20px;margin-left:70px"> @Session["user"]</li>
+
+                    }
+                        </li>
+                        <li style="float:right">
+                            @if (Session["custID"] == null)
+                            {
+
+
+
+                                @Html.ActionLink("Sign In", "login", "User", null, new { @class = "ht", })
+
+                            }
+                        </li>
+                        <li style="float:right">
+                            @if (Session["custID"] == null)
+                            {
+                                @Html.ActionLink("Sign Up", "Register", "User", null, new { @class = "ht" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Sign Out", "SignOut", "User", null, new { @class = "ht" })
+                            }
+
+                        <li>
+                    </ul>
+
+            </div>
+        </nav>
+
+        @RenderBody()
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+    </body>
+
+</html>
