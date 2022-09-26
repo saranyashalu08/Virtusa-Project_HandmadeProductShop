@@ -1,5 +1,13 @@
 ﻿table {
     align-items: center;
-    background-blend-mode:color;
-
+    background-blend-mode: color;
+    place-content:center;
+}
+input.Textbox {
+    width: 900px;
+    float: left;
+}
+body {
+    background-color: #74EBD5;
+    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
 }

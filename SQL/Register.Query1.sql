@@ -29,5 +29,5 @@ delete from Product where P_ID=4
 create table Category(Cat_ID int identity primary key,Cat_name varchar(100)not null,Cat_image nvarchar(max),add_id int foreign key references Admin(AdminID))
 select*from Category
 alter table Category add Cat_status int 
-delete from Category where Cat_ID=1021
+delete from Category where Cat_ID=10
 

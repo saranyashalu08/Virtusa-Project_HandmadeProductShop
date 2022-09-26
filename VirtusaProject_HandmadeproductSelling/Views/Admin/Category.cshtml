@@ -2,41 +2,110 @@
 @{
     ViewBag.Title = "Category";
 }
+<head>
+    <style>
+        .div {
+            background-color: #08AEEA;
+            background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+            padding-top:30px;
+            padding-bottom:30px;
+            height:400px;
+           
+            border-radius:50px;
+            
+        }
+        h3{
+            text-align:center;
+            font-family:'Times New Roman', Times, serif;
+            color:blue;
+        }
+        body {
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+        }
+    </style>
+</head>
+<body>
+    <h3>Add new Category</h3>
+    <div class="div" @*style="width: 700px;height:400px"*@>
+        @using (Html.BeginForm("Category", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
 
-<h3>Add new Category</h3>
-@using (Html.BeginForm("Category", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <form action="#" method="get">
-        <div class="container">
+            <form action="#" method="get">
+
+                <div class="container" style="width:500px;padding-left:100px">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon" style="background-color: #8EC5FC; background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); "><span class="glyphicon glyphicon-book"></span></div>
+                            @*<asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Username" required="required"></asp:TextBox>*@
+                            @Html.TextBoxFor(m => m.Cat_name, new { @class = "form-control", @placeholder = "Category name" })
+
+                        </div>
+                        <span style="color:red">   @Html.ValidationMessageFor(m => m.Cat_name) </span>
+
+                    </div>
+                </div>
+                <div class="container" style="width: 500px; padding-left: 100px">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon" style="background-color: #8EC5FC; background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); "><span class="glyphicon glyphicon-file"></span></div>
+                            @*<asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Username" required="required"></asp:TextBox>*@
+                            @Html.TextBox("Image", null, new { @class = "form-control", @type = "file", required = "required" })
+
+                        </div>
+                        <span style="color:red">   @Html.ValidationMessageFor(m => m.Cat_img) </span>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group" style="padding-left:440px">
+
+                        <input type="submit" value="Add Category" class="btn btn-success btn-block" />
+
+                    </div>
+                </div>
+                <div style="padding-left:550px">
+                    <span style="color:red">  @Html.ActionLink("View Category", "ViewCategory")</span>
+                </div>
+
+
+
+
+            </form>
+
+            <!--<div class="container" style="width: 500px; background-color: #8EC5FC; @*background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)*@; ">
             <table>
                 <tr>
                     <td>Category Name</td>
-                    <td> @Html.TextAreaFor(m => m.Cat_name, new { @class = "form-control", @placeholder = "Category name" })</td>
-                    <td> @Html.ValidationMessageFor(m => m.Cat_name)</td>
+                    <tb><input type="text" class="form-control" placeholder="Category name" name="Cat_name" id="Cat_name " /></tb>-->
+            @*<td> @Html.TextAreaFor(m => m.Cat_name, new { @class = "form-control", @placeholder = "Category name" })</td>*@
+            <!--<td> @Html.ValidationMessageFor(m => m.Cat_name)</td>
 
 
 
 
-                </tr>
+            </tr>
 
 
-                <tr>
-                    <td>Image</td>
-                    @*<td><input type="file" value="image" id="image"class="input" required /></td>*@
-                    <td>
-                        @Html.TextBox("Image", null, new { @class = "form-control", @type = "file", required = "required" })
+            <tr>
+                <td>Image</td>-->
+            @*<td><input type="file" value="image" id="image"class="input" required /></td>*@
+            <!--<td>
+                            @Html.TextBox("Image", null, new { @class = "form-control", @type = "file", required = "required" })
 
-                    </td>
+                        </td>
 
-                </tr>
-                <tr>
-                    <td><input type="submit" name="Create Category" value="Add Category" class="btn btn-primary" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="Create Category" value="Add Category" class="btn btn-primary" /></td>
 
-                </tr>
+                    </tr>
 
-            </table>
+                </table>
 
-        </div>
-    </form>
-}
+            </div>-->
 
+        }
+    </div>
+</body>
+   

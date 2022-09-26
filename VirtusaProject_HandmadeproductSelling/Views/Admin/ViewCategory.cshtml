@@ -2,6 +2,7 @@
 @model  PagedList.IPagedList<VirtusaProject_HandmadeproductSelling.Models.Category>
 @{
     Layout = null;
+    Layout = "~/Views/Shared/Layout1.cshtml";
 
 
 }
@@ -13,14 +14,20 @@
     <title>ViewCategory</title>
 </head>
 <body>
-    <h1 style="text-align-last:center">Products</h1>
+    <h1 style="text-align-last:center">CATEGORY</h1>
+    <h3 style="text-align:center">
+        @Html.ActionLink("Add Category","Category")
+    </h3>
+    <h3 style="text-align:center">
+        @Html.ActionLink("Sign Out", "ALogin")
+    </h3>
     <div>
         @if (Model != null)
         {
             foreach (var item in Model)
             {
                 <div style="height: 220px; margin-top: 160px">
-                    <img src="@Url.Content(item.Cat_img)" style="height:100%;width:50%;padding-left:25%" />
+                    <img src="@Url.Content(item.Cat_img)" style="height:100%;width:70%;padding-left:25%" />
                     <br />
                     <h4 style="color:#808080; font-family:'Arial Rounded MT';text-align:center;margin-top:20px">@item.Cat_name</h4>
                     <br />
@@ -42,6 +49,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 

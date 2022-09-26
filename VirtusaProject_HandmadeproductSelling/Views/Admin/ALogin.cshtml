@@ -1,62 +1,95 @@
 ﻿@model VirtusaProject_HandmadeproductSelling.Models.Admin
 @{
     ViewBag.Title = "Login";
+    //Layout = "~/Views/Shared/Layout1.cshtml";
 }
 <head>
     <style>
-        <link rel="stylesheet" href="~/Content/StyleSheet1.css">
-
-
+        .div {
+            background-color: #FA8BFF;
+            background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+           height:500px;
+           border-radius:10px;
+            
+        }
+        h2{
+            text-align:center;
+        }
+        .center{
+            display:flex;
+            justify-content:center;
+        }
+        body {
+            background-color: #FFDEE9;
+            background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+        }
     </style>
-   
+
 </head>
+<body>
+<div style="padding-top:100px">
+    <div class="center">
+    <div class="div">
+        <h2>Admin Login</h2>
 
-<div>
-    <h2>Admin Login</h2>
-    @using (Html.BeginForm())
-    {
-        
-            <form class="action" method="post">
-               
-                    <div class="container" >
-                        <table style="padding-left:500%">
-                            <tr>
-                                <tb>User Name</tb>
-                                <tb>@Html.TextAreaFor(m => m.AdminName, new { @class = "form-control", @PlaceHolder = "Admin Name" })</tb>
-                                <tb style="color:red">@Html.ValidationMessageFor(m => m.AdminName)</tb>
-                            </tr>
-                            <br />
+        @using (Html.BeginForm())
+        {<form class="action" method="post">
 
-                            <tr>
-                                <tb>Password</tb>
-                                <td>@Html.PasswordFor(m => m.A_Password, new { @class = "form-control", @PlaceHolder = "Enter Password" })</td>
-                                <td style="color:red">@Html.ValidationMessageFor(m => m.A_Password)</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><input type="submit" value="Login" class="btn btn-primary"></td>
+                <div class="container" style="width: 500px; padding-left: 70px">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon" style="background-color: #00DBDE; background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%); "><span class="glyphicon glyphicon-user"></span></div>
+                            @*<asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Username" required="required"></asp:TextBox>*@
+                            @Html.TextBoxFor(m => m.AdminName, new { @class = "form-control", @placeholder = "User name" })
 
-                            </tr>
-
-                        </table>
-
-
-
-
-
-
-
-
-                        <div class="form-group">
-                            <p style="color:red">@ViewBag.error</p>
                         </div>
+                        <span style="color:red">   @Html.ValidationMessageFor(m => m.AdminName) </span>
+
                     </div>
-                    <div style="align-items:center;width:100%;height:100%">
+                </div>
+                <div class="container" style="width:500px;padding-left:70px">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon" style="background-color: #00DBDE; background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%); "><span class="glyphicon glyphicon-lock"></span></div>
+                            @*<asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Username" required="required"></asp:TextBox>*@
+                            @Html.PasswordFor(m => m.A_Password, new { @class = "form-control", @placeholder = "Password" })
+
+                        </div>
+                        <span style="color:red">   @Html.ValidationMessageFor(m => m.A_Password) </span>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group" style="padding-left:85px">
+
+                        <input type="submit" value="Submit" class="btn btn-success btn-block" />
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="form-group">
+                    <p style="color:red;text-align:center">@ViewBag.error</p>
+                </div>
+
+                @*<div style="align-items:center;width:100%;height:100%">
                         <img src="~/Content/Image/crochet.jpg" alt="bg" />
 
-                    </div>
-              
-        </form>
+                    </div>*@
 
-    }
+            </form>
+
+
+        }
+    </div>
+        </div>
 </div>
+</body>
 

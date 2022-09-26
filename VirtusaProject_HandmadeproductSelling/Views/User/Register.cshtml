@@ -1,84 +1,104 @@
 ﻿@model VirtusaProject_HandmadeproductSelling.Models.Registration
 @{
     ViewBag.Title = null;
+    Layout = "~/Views/Shared/Layout1.cshtml";
 }
 <head>
     <style>
-        .form {
-            background-color: #74EBD5;
-            background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+       
+        .Text{
+            text-align:end;
         }
-        .input{
-            align-items:center;
+        .padding {
+            padding-left:30px;
+        }
+
+
+
+        .center {
+            display: flex;
+            justify-content: center;
+            background-color: #08AEEA;
+            background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+            padding-top:50px;
+            padding-bottom:50px;
+            border-radius:20px;
+            
+            
+            
         }
     </style>
 </head>
-
 <h3 style="text-align:center;color:dodgerblue">Sign Up</h3>
-@using (Html.BeginForm("Register", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <form action="#" method="get">
-        <div class="container" style="background-color: #FA8BFF; background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%); ">
-            <table >
-                <tr>
-                    <td>First Name</td>
-                    <td> @Html.TextAreaFor(m => m.f_name, new { @class = "form-control", @placeholder = "Enter First name here" })</td>
-                    <td> @Html.ValidationMessageFor(m => m.f_name)</td>
-                </tr>
-                
+<div style="padding-left:400px">
+    
+    @using (Html.BeginForm("Register", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
 
-              
-                <tr>
-                    <td>Last Name</td>
-                    <td> @Html.TextAreaFor(m => m.l_name, new { @class = "form-control", @placeholder = "Enter Last name here" })</td>
-                    <td> @Html.ValidationMessageFor(m => m.l_name)</td>
-
-                </tr>
-               
-
-                <tr>
-                    <td>Email ID</td>
-                    <td> @Html.TextAreaFor(m => m.email, new { @class = "form-control", @placeholder = "example@gmail.com" })</td>
-                    <td> @Html.ValidationMessageFor(m => m.l_name)</td>
-                </tr>
-             
-
-                <tr>
-                    <td>Gender</td>
-                    <td>
-                        @Html.DropDownListFor(m => m.gender, ViewBag.gender as SelectList, new { @class = "form-control" })
-                    </td>
-                    <td>
-                        @Html.ValidationMessageFor(m => m.gender, "", new { @class = "text-danger" })
-                    </td>
-                </tr>
-              
-
-                <tr>
-                    <td>Mobile No.</td>
-                    <td>@Html.TextBoxFor(m => m.phone, new { @class = "form-control", @placeholder = "Enter your mobile no." })</td>
-                    <td>  @Html.ValidationMessageFor(m => m.phone, "", new { @class = "text-danger" })</td>
-                </tr>
-               
-
-                <tr>
-                    <td>Password</td>
-                    <td>@Html.PasswordFor(m => m.c_password, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    <td > @Html.ValidationMessageFor(m => m.c_password, "", new { @class = "text-danger" })</td>
-                </tr>
-               
-
-                <tr>
-                    <td>Confirm Password</td>
-                    <td>
-                        @Html.PasswordFor(m => m.Con_password, new { htmlAttributes = new { @class = "form-control" } })
-                    </td>
-                    <td>@Html.ValidationMessageFor(m => m.Con_password, "", new { @class = "text-danger" })</td>
-
-                </tr>
+        <form action="#" method="get">
+            <div class="container" >
+                <table class="center" style="width:500px">
+                    <tr>
+                        <td class="Text">First Name</td>
+                        <td class="padding"><input type="text" class="form-control" placeholder="Enter first name" name="f_name" id="f_name " /></td>
+                        @*<td> @Html.TextAreaFor(m => m.f_name, new { @class = "form-control", @placeholder = "Enter First name here" })</td>*@
+                        <td> @Html.ValidationMessageFor(m => m.f_name)</td>
+                    </tr>
 
 
 
+                    <tr>
+                        <td class="Text">Last Name</td>
+                        <td class="padding"><input type="text" class="form-control" placeholder="Enter last name" name="l_name" id="l_name" /></td>
+                        @*<td> @Html.TextAreaFor(m => m.l_name, new { @class = "form-control", @placeholder = "Enter Last name here" })</td>*@
+                        <td> @Html.ValidationMessageFor(m => m.l_name)</td>
+
+                    </tr>
+
+
+                    <tr>
+                        <td class="Text">Email ID</td>
+                        <td class="padding"><input type="text" class="form-control" placeholder="example@gmail.com" name="email" id="email " /></td>
+                        @*<td> @Html.TextAreaFor(m => m.email, new { @class = "form-control", @placeholder = "example@gmail.com" })</td>*@
+                        <td> @Html.ValidationMessageFor(m => m.l_name)</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="Text" >Gender</td>
+                        <td class="padding">
+                            @Html.DropDownListFor(m => m.gender, ViewBag.gender as SelectList, new { @class = "form-control" })
+                        </td>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.gender, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="Text">Mobile No.</td>
+                        <td class="padding">@Html.TextBoxFor(m => m.phone, new { @class = "form-control", @placeholder = "Enter your mobile no." })</td>
+                        <td>  @Html.ValidationMessageFor(m => m.phone, "", new { @class = "text-danger" })</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="Text">Password</td>
+                        <td class="padding"><input type="password" class="form-control" placeholder="Enter password" name="c_password" id="c_password" /></td>
+                        @*<td>@Html.PasswordFor(m => m.c_password, new { htmlAttributes = new { @class = "form-control" } })</td>*@
+                        <td> @Html.ValidationMessageFor(m => m.c_password, "", new { @class = "text-danger" })</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="Text">Confirm Password</td>
+                        <td class="padding">
+                            <input type="password" class="form-control" placeholder="Confirm Paswword" name="Con_password" id="Con_password" />
+                            @*@Html.PasswordFor(m => m.Con_password, new { htmlAttributes = new { @class = "form-control" } })*@
+                        </td>
+                        <td>@Html.ValidationMessageFor(m => m.Con_password, "", new { @class = "text-danger" })</td>
+
+                    </tr>
 
 
 
@@ -87,13 +107,24 @@
 
 
 
-                <tr>
-                    <td><input type="submit" name="Register" value="Register" class="btn btn-primary" /></td>
 
-                </tr>
 
-            </table>
 
+                    <tr>
+                        <td class="padding"><input type="submit" name="Register" value="Register" class="btn btn-primary" /></td>
+                        <td >@Html.ActionLink("Already a user","Login")</td>
+                    </tr>
+
+                </table>
+                <div class="form-group">
+                    <p style="color:red;text-align:center">@ViewBag.error</p>
+                </div>
+
+            </div>
+        </form>
+        <div>
+            @Html.ActionLink("<<back","Index")
         </div>
-    </form>
-}
+
+    }
+</div>

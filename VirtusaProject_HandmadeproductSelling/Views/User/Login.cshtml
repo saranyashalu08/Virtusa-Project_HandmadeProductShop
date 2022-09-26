@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/Layout1.cshtml";
 }
 
-<div>
+
+<div >
     <h2 style="text-align:center">Customer Login</h2>
     @using (Html.BeginForm())
     {
@@ -14,19 +15,31 @@
                 <table>
                     <tr>
                         <tb >Email</tb>
-                        <tb>@Html.TextAreaFor(m => m.email, new { @class = "form-control", @PlaceHolder = "Email" })</tb>
-                        @*<tb style="color:red">@Html.ValidationMessageFor(m => m.AdminName)</tb>*@
+                      <br />
+                        <br />
+                        @*<tb>@Html.TextAreaFor(m => m.email, new { @class = "form-control", @PlaceHolder = "Email" })</tb>*@
+                        <tb><input type="text" class="form-control" placeholder="example@gmail.com" name="email" id="email " /></tb>
+                        <tb style="color:red">@Html.ValidationMessageFor(m => m.email)</tb>
                     </tr>
-
+                    
+                    <hr />
                     <tr>
                         <tb>Password</tb>
-                        <td>@Html.PasswordFor(m => m.c_password, new { @class = "form-control", @PlaceHolder = "Enter Password" })</td>
-                        @*<td style="color:red">@Html.ValidationMessageFor(m => m.A_Password)</td>*@
+                        <td>@Html.PasswordFor(m => m.c_password, new { @class = "form-control", @PlaceHolder = "Enter Password", @style = "width:1145px" })</td>
+                     
+                        <td style="color:red;text-align:justify">@Html.ValidationMessageFor(m => m.c_password)</td>
                     </tr>
+                    
+                    
                     <tr>
+                        
+                       
                         <td colspan="2"><input type="submit" value="Login" class="btn btn-primary"></td>
 
+                        
+
                     </tr>
+                    <br />
 
                 </table>
 
@@ -43,10 +56,10 @@
 
         </form>
         <hr />
-        <div style="align-items:center;width:100%;height:100%">
+        @*<div style="align-items:center;width:100%;height:100%" padding-left="50px">
             <img src="~/Content/Image/crochet.jpg" alt="bg" />
 
-        </div>
+        </div>*@
        
 
     }

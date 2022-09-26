@@ -12,35 +12,46 @@
     td {
         padding: 20px;
     }
+    h2{
+        text-align:center;
+    }
+    h3{
+        text-align:center;
+    }
+    p{
+        text-align:center;
+    }
+    
+    
 </style>
 
+<div >
+    <div class="col-lg-8 col-md-8">
 
-<div class="col-lg-8 col-md-8">
+        <div>
+            <h2>@Model.P_name <small>Product-ID:@Model.P_ID</small></h2>
+        </div>
 
-    <div>
-        <h2>@Model.P_name <small>Product-ID:@Model.P_ID</small></h2>
+        <img src="@Url.Content(@Model.P_image)" style="width:450PX; height:450PX"  />
+
+        <div>
+            <h3>Prize:Rs </h3>
+            <p>@Model.P_price</p>
+        </div>
+
+        <div>
+            <h3>Description: </h3>
+            <p>@Model.P_desc</p>
+        </div>
+        <div>
+            <h3>Available Stock: </h3>
+            <p>@Model.P_quantity</p>
+        </div>
+        <div>
+            <h3>Under Category: </h3>
+            <p>@Model.Cat_name</p>
+        </div>
     </div>
-
-    <img src="@Url.Content(@Model.P_image)" style="width:400PX; height:450PX" />
-
-    <div>
-        <h3>Prize:Rs </h3>
-        <p>@Model.P_price</p>
-    </div>
-
-    <div>
-        <h3>Description: </h3>
-        <p>@Model.P_desc</p>
-    </div>
-    <div>
-        <h3>Available Stock: </h3>
-        <p>@Model.P_quantity</p>
-    </div>
-    <div>
-        <h3>Under Category: </h3>
-        <p>@Model.Cat_name</p>
-    </div>
-
 
 
 
@@ -71,5 +82,5 @@
 
 
 
-<
+
 
