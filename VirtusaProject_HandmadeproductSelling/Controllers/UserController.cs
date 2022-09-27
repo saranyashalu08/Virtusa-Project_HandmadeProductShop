@@ -142,7 +142,7 @@ namespace VirtusaProject_HandmadeproductSelling.Controllers
         public ActionResult DisplayProduct(int ? id,int ? page)
         {
             TempData.Keep();
-            int pagesize = 4, pageindex = 1;
+            int pagesize = 7, pageindex = 1;
             pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
             var list = db.Products.Where(m => m.adduser_pid == id).OrderByDescending(m => m.P_ID).ToList();
             IPagedList<Product> cate = list.ToPagedList(pageindex, pagesize);
@@ -151,11 +151,20 @@ namespace VirtusaProject_HandmadeproductSelling.Controllers
             return View(cate);
         }
         [HttpPost]
-        public ActionResult DisplayAdd(int? id, int? page, string search)
+        //public ActionResult DisplayAdd(int? id, int? page, string search)
+        //{
+        //    int pagesize = 9, pageindex = 1;
+        //    pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
+        //    var list = db.Products.Where(m=>m.P_name.Contains(search)).OrderByDescending(x => x.P_ID).ToList();
+        //    IPagedList<Product> cate = list.ToPagedList(pageindex, pagesize);
+
+        //    return View(cate);
+        //}
+        public ActionResult DisplayProduct(int? id, int? page, string search)
         {
-            int pagesize = 9, pageindex = 1;
+            int pagesize = 7, pageindex = 1;
             pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
-            var list = db.Products.Where(m=>m.P_name.Contains(search)).OrderByDescending(x => x.P_ID).ToList();
+            var list = db.Products.Where(m => m.P_name.Contains(search)).OrderByDescending(m => m.P_ID).ToList();
             IPagedList<Product> cate = list.ToPagedList(pageindex, pagesize);
 
             return View(cate);
@@ -254,10 +263,12 @@ namespace VirtusaProject_HandmadeproductSelling.Controllers
 
             Category category = db.Categories.Where(m => m.Cat_ID == product.add_pid).SingleOrDefault();
             displayDetails.Cat_name = category.Cat_name;
-            
-            //Registration registration=db.Registrations.Where(m=>m.custID==product.adduser_pid).SingleOrDefault();
 
-            //displayDetails.f_name=registration.f_name;
+            //Registration registration = db.Registrations.Where(m => m.custID == product.adduser_pid).SingleOrDefault();
+
+            //displayDetails.email = registration.email;
+            //displayDetails.adduser_pid = registration.custID;
+           
 
 
 
@@ -267,7 +278,118 @@ namespace VirtusaProject_HandmadeproductSelling.Controllers
 
 
         }
-        public ActionResult Signout()
+        public ActionResult AddtoBasket(int?id)
+        {
+            Product pro = db.Products.Where(m => m.P_ID == id).SingleOrDefault();
+
+    
+            return View(pro);
+        }
+
+       
+
+
+
+
+
+
+
+        List<Cart> li = new List<Cart>();
+        [HttpPost]
+
+        public ActionResult AddtoBasket(Product product,string quantity, int id)
+        {
+            Product pro = db.Products.Where(m => m.P_ID == id).SingleOrDefault();
+            Cart cart = new Cart();
+            cart.P_ID=product.P_ID;
+            cart.P_price=product.P_price;
+            cart.qty = Convert.ToInt32(quantity);
+            cart.bill = cart.P_price * cart.qty;
+
+            if (TempData["Cart"] == null)
+            {
+                li.Add(cart);
+                TempData["cart"] = li;
+            }
+            else
+            {
+                List<Cart> li2 = TempData["Cart"] as List<Cart>;
+                int flag = 0;
+                foreach (var item in li2)
+                {
+                    if (item.P_ID == cart.P_ID) 
+                    {
+                        item.qty += cart.qty;
+                  flag = 1;
+                    }
+                }
+                if (flag == 0) 
+                {
+                    li2.Add(cart);
+                }
+                TempData["Cart"] = li2;
+            }
+            TempData.Keep();
+
+            return RedirectToAction("Index");
+        }
+        public ActionResult remove(int? id)
+        {
+            List<Cart> li2 = TempData["Cart"] as List<Cart>;
+            Cart c = li2.Where(m => m.P_ID == id).SingleOrDefault();
+            li2.Remove(c);
+            double h = 0;
+            foreach (var item in li2)
+            {
+                h += (double)item.bill;
+            }
+            TempData["total"] = h;
+            return RedirectToAction("Checkout");
+        }
+        //public ActionResult Checkout()
+        //{
+        //    TempData.Keep();
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult Checkout(Order_Details O)
+        //{
+        //    List<Cart> li = TempData["Cart"] as List<Cart>;
+        //    O_Invoice inv = new O_Invoice();
+        //    inv.I_date = System.DateTime.Now;
+        //    inv.o_Userfk = Convert.ToInt32(Session["cu"].ToString());
+        //    inv.in_totalbill = (double)TempData["total"];
+        //    db.tbl_invoice.Add(iv);
+        //    db.SaveChanges();
+
+        //    foreach (var item in li)
+        //    {
+        //        order_table od = new order_table();
+        //        od.o_fk_pdt = item.pdt_id;
+        //        od.o_fk_invoice = iv.in_id;
+        //        od.o_date = System.DateTime.Now;
+        //        od.o_qty = item.o_qty;
+        //        od.o_unitprice = item.pdt_price;
+        //        od.o_bill = item.o_bill;
+        //        db.order_table.Add(od);
+        //        db.SaveChanges();
+        //    }
+
+        //    TempData.Remove("total");
+        //    TempData.Remove("cart");
+        //    TempData["msg"] = "Order Placed.";
+        //    TempData.Keep();
+        //    return RedirectToAction("Index");
+        //}
+
+        //public ActionResult Total_Bill()
+        //{
+        //    return View(db.order_table.ToList());
+        //}
+
+
+        public ActionResult SignOut()
         {
 
             Session.RemoveAll();
@@ -275,6 +397,14 @@ namespace VirtusaProject_HandmadeproductSelling.Controllers
 
             return RedirectToAction("Index");
         }
+        public ActionResult Delete(int? id)
+        {
+            Product p = db.Products.Where(m=> m.P_ID == id).SingleOrDefault();
+            db.Products.Remove(p);
+            db.SaveChanges();
+            return RedirectToAction("DisplayProductAdmin");
+        }
+
 
 
     }

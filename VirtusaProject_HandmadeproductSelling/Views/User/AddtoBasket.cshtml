@@ -1,0 +1,55 @@
+﻿@model VirtusaProject_HandmadeproductSelling.Models.Product
+@{
+    ViewBag.Title = "AddtoBasket";
+    Layout = "~/Views/Shared/Layout1.cshtml";
+}
+
+<h2>AddtoBasket</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        @*<div style="text-align:center">
+            @Html.ActionLink("<<return", "DisplayProduct")
+        </div>*@
+        <div class="col-lg-8 col-md-8">
+
+           
+                <h2>@Model.P_name <small>Product-ID:@Model.P_ID</small></h2>
+            
+
+            <img src="@Url.Content(@Model.P_image)" style="width:450PX; height:450PX" />
+
+           
+                <h3>Prize:Rs </h3>
+                <p>@Model.P_price</p>
+           
+
+           
+                <h3>Description: </h3>
+                <p>@Model.P_desc</p>
+            
+            
+                <h3>Quantity: </h3>
+                <p>@Model.P_quantity</p>
+                <input type="number" name="quantity" value="0" id="quantity" />
+                <input type="submit" name="Submit" class="btn btn-primary" />
+           
+           
+        </div>
+
+
+
+       
+
+
+
+
+
+    </div>
+
+
+
+
+
+}
+

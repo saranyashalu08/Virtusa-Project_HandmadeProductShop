@@ -19,17 +19,19 @@ namespace VirtusaProject_HandmadeproductSelling.Models
         public Registration()
         {
             this.Products = new HashSet<Product>();
+            this.Order_Details = new HashSet<Order_Details>();
         }
     
         public int custID { get; set; }
-        [Required(ErrorMessage = "First Name")]
+        [Required(ErrorMessage = "Please enter your first name")]
         public string f_name { get; set; }
-        [Required(ErrorMessage = "Last Name")]
+        [Required(ErrorMessage = "Please enter your last name")]
         public string l_name { get; set; }
-        [Required(ErrorMessage = "Enter Email ")]
+        [Required(ErrorMessage = "EmailID required")]
         public string email { get; set; }
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "Select gender")]
         public string gender { get; set; }
+        [Required(ErrorMessage = "Mobile number required")]
         [RegularExpression(@"[6-9]\d{9}", ErrorMessage = "Invalid Mobile No")]
         public Nullable<long> phone { get; set; }
         [Required(ErrorMessage = "Enter Password")]
@@ -40,5 +42,7 @@ namespace VirtusaProject_HandmadeproductSelling.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order_Details> Order_Details { get; set; }
     }
 }

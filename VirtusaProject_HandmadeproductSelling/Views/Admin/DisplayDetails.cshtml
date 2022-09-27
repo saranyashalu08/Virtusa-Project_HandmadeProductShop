@@ -1,4 +1,4 @@
-﻿<!--@model VirtusaProject_HandmadeproductSelling.Models.DisplayDetails
+﻿@model VirtusaProject_HandmadeproductSelling.Models.DisplayDetails
 @{
     ViewBag.Title = "DisplayDetails";
     Layout = "~/Views/Shared/Layout1.cshtml";
@@ -12,22 +12,23 @@
     td {
         padding: 20px;
     }
-    h2{
-        text-align:center;
+
+    h2 {
+        text-align: center;
     }
-    h3{
-        text-align:center;
+
+    h3 {
+        text-align: center;
     }
-    p{
-        text-align:center;
+
+    p {
+        text-align: center;
     }
-    
-    
 </style>
 
-<div >
+<div>
     <div style="text-align:center">
-        @Html.ActionLink("<<return","DisplayProduct")
+        @Html.ActionLink("<<return", "DisplayProductAdmin")
     </div>
     <div class="col-lg-8 col-md-8">
 
@@ -35,7 +36,7 @@
             <h2>@Model.P_name <small>Product-ID:@Model.P_ID</small></h2>
         </div>
 
-        <img src="@Url.Content(@Model.P_image)" style="width:450PX; height:450PX"  />
+        <img src="@Url.Content(@Model.P_image)" style="width:450PX; height:450PX" />
 
         <div>
             <h3>Prize:Rs </h3>
@@ -54,36 +55,32 @@
             <h3>Under Category: </h3>
             <p>@Model.Cat_name</p>
         </div>
-    </div>-->
+    </div>
 
 
 
     @*<tr> <td>Price: </td> <td>@Model.P_price </td> </tr>
-    <tr> <td>Category: </td> <td>@Model.Cat_name </td> </tr>*@
+        <tr> <td>Category: </td> <td>@Model.Cat_name </td> </tr>*@
 
 
 
-    <!--<tr>
-            <td colspan="2">
-                @if (Convert.ToInt32(Session["custID"]) == Convert.ToInt32(Model.adduser_pid))
-                {
+    <tr>
+        <td colspan="2">
+            @if (Convert.ToInt32(Session["custID"]) == Convert.ToInt32(Model.adduser_pid))
+            {
 
-                    @Html.ActionLink("Delete Item", "Delete", new { @class = "btn btn-danger", id = Model.P_ID })
-
-
-
-                }
-            </td>
-        </tr>
+                @Html.ActionLink("Delete Item", "Delete", new { @class = "btn btn-danger", id = Model.P_ID })
+                //getting error but working
 
 
 
-
-
-</div>-->
+            }
+        </td>
+    </tr>
 
 
 
 
 
+</div>
 

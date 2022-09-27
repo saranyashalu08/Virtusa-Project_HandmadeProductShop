@@ -11,26 +11,21 @@ namespace VirtusaProject_HandmadeproductSelling.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
-    public partial class Category
+    public partial class O_Invoice
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Category()
+        public O_Invoice()
         {
-            this.Products = new HashSet<Product>();
+            this.Order_Details = new HashSet<Order_Details>();
         }
     
-        public int Cat_ID { get; set; }
-        [Required(ErrorMessage = "Category name")]
-        public string Cat_name { get; set; }
-        public Nullable<int> add_id { get; set; }
-        [Required(ErrorMessage = "Input file")]
-        public string Cat_img { get; set; }
-        public Nullable<int> Cat_status { get; set; }
+        public int I_Id { get; set; }
+        public Nullable<int> I_userfk { get; set; }
+        public Nullable<System.DateTime> I_date { get; set; }
     
-        public virtual Admin Admin { get; set; }
+        public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Order_Details> Order_Details { get; set; }
     }
 }

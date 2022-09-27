@@ -30,5 +30,7 @@ namespace VirtusaProject_HandmadeproductSelling.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<O_Invoice> O_Invoice { get; set; }
+        public virtual DbSet<Order_Details> Order_Details { get; set; }
     }
 }

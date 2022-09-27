@@ -143,6 +143,7 @@
     <Compile Include="Models\Admin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -161,6 +162,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Details.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\O_Invoice.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -235,10 +242,15 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\Layout1.cshtml" />
-    <Content Include="Views\Admin\AddProduct.cshtml" />
     <Content Include="Views\User\AddProduct.cshtml" />
     <Content Include="Views\User\DisplayProduct.cshtml" />
     <Content Include="Views\User\DisplayDetails.cshtml" />
+    <Content Include="Views\User\AddtoBasket.cshtml" />
+    <Content Include="Views\User\Checkout.cshtml" />
+    <Content Include="Views\Admin\AddProductAdmin.cshtml" />
+    <Content Include="Views\Admin\DisplayProductAdmin.cshtml" />
+    <Content Include="Views\Admin\DisplayDetails.cshtml" />
+    <Content Include="Views\User\SignOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

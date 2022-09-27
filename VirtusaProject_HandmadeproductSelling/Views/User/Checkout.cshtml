@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/Layout1.cshtml";
+}
+
+<h2>Checkout</h2>
+
+
+
+
+ @if (TempData["Cart"]!=null)
+            {
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>PRIZE</th>
+                            <th>QUANTITY</th>
+                            <th>BILL</th>
+
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in TempData["Cart"]as List<VirtusaProject_HandmadeproductSelling.Models.Cart>)
+                         {
+                            <tr>
+                                <td>@item.P_ID</td>
+                                <td>@item.P_name</td>
+                                <td>@item.P_price</td>
+                                <td>@item.qty</td>
+                                <td>@item.bill</td>
+
+
+
+
+
+                            </tr>
+
+                         }
+                    </tbody>
+
+
+
+
+
+                </table>
+
+
+            }
+else
+            {
+                <h3 style="color:red">Cart is empty</h3>
+                @Html.ActionLink("Continue Shopping","Index","USer")
+            }

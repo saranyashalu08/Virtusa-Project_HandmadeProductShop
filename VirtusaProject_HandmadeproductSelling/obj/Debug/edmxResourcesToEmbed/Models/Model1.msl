@@ -61,5 +61,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="O_Invoice">
+      <EntityTypeMapping TypeName="Handmade_ProductModel.O_Invoice">
+        <MappingFragment StoreEntitySet="O_Invoice">
+          <ScalarProperty Name="I_date" ColumnName="I_date" />
+          <ScalarProperty Name="I_userfk" ColumnName="I_userfk" />
+          <ScalarProperty Name="I_Id" ColumnName="I_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Details">
+      <EntityTypeMapping TypeName="Handmade_ProductModel.Order_Details">
+        <MappingFragment StoreEntitySet="Order_Details">
+          <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+          <ScalarProperty Name="bill" ColumnName="bill" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="o_date" ColumnName="o_date" />
+          <ScalarProperty Name="o_invoicefk" ColumnName="o_invoicefk" />
+          <ScalarProperty Name="o_Userfk" ColumnName="o_Userfk" />
+          <ScalarProperty Name="o_P_fk" ColumnName="o_P_fk" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

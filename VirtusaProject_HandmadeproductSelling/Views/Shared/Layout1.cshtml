@@ -20,7 +20,7 @@
 
 </head>
 <body>
-    
+
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid" style="background-color: background: rgb(63,94,251); background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);width:100%;height:35%">
@@ -28,18 +28,30 @@
                 <a class="navbar-brand" href=""> Handmade Product Shop </a>
             </div>
 
-            
+
 
 
 
             <ul class="nav navbar-nav" style="font-family:'Times New Roman', Times, serif;color:black;font-size:medium;color:black">
                 <li>@Html.ActionLink("Category", "Index", "User", null, new { @class = "ht" })</li>
-                <li>@Html.ActionLink("Products", "DisplayProduct", "User", null, new { @clas = "ht" })</li>
+                <li>@Html.ActionLink("Products", "DisplayProductAdmin", "Admin", null, new { @clas = "ht" })</li>
                 <li>@Html.ActionLink("Admin Login", "ALogin", "Admin", null, new { @class = "ht" })</li>
                 @*<li> <a href=""> About </a></li>*@
+
+
+
+
+
+
+
+
+
+
+
+
                 <ul class="nav navbar-nav">
                     <li>
-                       
+
                         @if (Session["custID"] != null)
                         {
 
@@ -49,7 +61,7 @@
                             @*<li style="margin-top:20px;color:whitesmoke;margin-left:70px">Hello+@Session["email"]</li>*@
 
 
-<li style="color:whitesmoke;margin-top:20px;margin-left:70px"> @Session["user"]</li>
+                        <li style="color:whitesmoke;margin-top:20px;margin-left:70px"> @Session["user"]</li>
 
                     }
                         </li>
@@ -78,8 +90,16 @@
 
             </div>
         </nav>
+        
+
+
+
 
         @RenderBody()
+        <hr />
+        <footer>
+            <p style="text-align:center">&copy;Handmade Products</p>
+        </footer>
         <script src="~/Scripts/bootstrap.min.js"></script>
         <script src="~/Scripts/bootstrap.js"></script>
     </body>

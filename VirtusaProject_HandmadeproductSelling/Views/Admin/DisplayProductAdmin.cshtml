@@ -1,0 +1,104 @@
+﻿
+@using PagedList.Mvc
+@model  PagedList.IPagedList<VirtusaProject_HandmadeproductSelling.Models.Product>
+@{
+    ViewBag.Title = "ViewCategory";
+    Layout = "~/Views/Shared/Layout1.cshtml";
+}
+
+
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View Product</title>
+</head>
+<body style="background-color: #FA8BFF; background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%); ">
+    <h1 style="text-align-last:center;font-family:'Times New Roman', Times, serif;color:blueviolet">Products</h1>
+    <div class="row" style="margin-bottom:40px">
+        <div class="col-lg-8 col-md-8">
+            @using (Html.BeginForm("DisplayProductAdmin", "Admin"))
+            {
+                <div class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search" name="search" id="search" />
+                    </div>
+                    <button type="submit" class="btn btn-success">Search</button>
+                </div>
+            }
+
+        </div>
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-10">
+
+            </div>
+
+
+        </div>
+        <div class="row">
+            @{int x = 0;}
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+
+
+                    x++;
+
+
+                    <div class="col-lg-4 col-md-4" style="height:220px;margin-top:160px">
+                        <img src="@Url.Content(item.P_image)" style=" height:130%;width:100%" />
+                        <br />
+                        <h4 style="color:#808080; font-family:'Arial Rounded MT';text-align:center;margin-top:20px"> @Html.ActionLink(@item.P_name, "DisplayDetails", new { id = @item.P_ID })</h4>
+                        @*<h4 style="color:#808080; font-family:'Arial Rounded MT';text-align:center;margin-top:20px"> @Html.ActionLink("Add to Basket", "AddtoBasket", new { id = @item.P_ID })</h4>*@
+                        <br />
+                        @*<h4 style="color:#808080; font-family:'Arial Rounded MT'; text-align:center; margin-top:20px">@Html.ActionLink("Add to cart", "Ad_tocart", new { id = item.pdt_id })</h4>*@
+                        @*<h4 style="text-align:center">
+            <a class="btn btn-primary btn-block" href="@Url.Action( "AddtoBasket", new { id = item.P_ID})">
+                <i style="font-size:24px"></i>Add to Cart
+            </a>
+        </h4>*@
+                    </div>
+
+
+
+                }
+            }
+
+            <h3 style="text-align:center">@x Results Found. </h3>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    </div>
+
+    <div style="margin-top:370px">
+        <div id="container" style="margin-left: 100px">
+            <p></p>
+            <p></p>
+            <div class="pagination" style="margin-left: 400px">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                of @Model.PageCount  @Html.PagedListPager(Model, page => Url.Action("DisplayProductAdmin", new { page }))
+            </div>
+        </div>
+    </div>
+
+   
+
+
+
+
+
+</body>
+</html>
+

@@ -12,6 +12,7 @@ namespace VirtusaProject_HandmadeproductSelling.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    
     public partial class Admin
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +23,7 @@ namespace VirtusaProject_HandmadeproductSelling.Models
         }
     
         public int AdminID { get; set; }
-        [Required(ErrorMessage ="Enter First name")]
+        [Required(ErrorMessage = "Enter name")]
         public string AdminName { get; set; }
         [Required(ErrorMessage = "Password Required")]
         public string A_Password { get; set; }

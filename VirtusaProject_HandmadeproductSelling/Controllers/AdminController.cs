@@ -83,84 +83,122 @@ namespace VirtusaProject_HandmadeproductSelling.Controllers
 
             return View(cate);
         }
-        public ActionResult AddProduct()
+        public ActionResult AddProductAdmin()
         {
+            List<Category> li = db.Categories.ToList();
+            ViewBag.categorylist = new SelectList(li, "Cat_ID", "Cat_name");
+
+
+
             return View();
         }
-        //public ActionResult Create()
-        //{
-        //    List<Category> li = db.Categories.ToList();
-        //    ViewBag.categorylist = new SelectList(li, "Cat_ID", "Cat_name");
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult Create(Product product, HttpPostedFileBase P_image)
-        //{
-        //    List<Category> li = db.Categories.ToList();
-        //    ViewBag.categorylist = new SelectList(li, "Cat_ID", "Cat_name");
+        [HttpPost]
+        public ActionResult AddProductAdmin(Product product, HttpPostedFileBase P_image)
+        {
+            List<Category> li = db.Categories.ToList();
+            ViewBag.categorylist = new SelectList(li, "Cat_ID", "Cat_name");
 
 
-        //    string path = Uploadimage(P_image);
+            string path = Uploadimage(P_image);
 
-        //    if (path.Equals("-1"))
-        //    {
-        //        ViewBag.error = "image could not be uploaded";
+            if (path.Equals("-1"))
+            {
+                ViewBag.error = "image could not be uploaded";
 
-        //    }
-        //    else
+            }
+            else
 
-        //    {
-
-
-        //        Product pr = new Product();
-        //        pr.P_name = product.P_name;
-        //        pr.P_image = path;
-        //        pr.P_desc = product.P_desc;
-        //        pr.P_price = product.P_price;
-        //        pr.P_quantity = product.P_quantity;
-        //        pr.add_pid = product.addadmin_pid;
+            {
 
 
-        //        pr.addadmin_pid = Convert.ToInt32(Session["AdminID"].ToString());
-        //        db.Products.Add(pr);
-        //        db.SaveChanges();
-
-        //        Response.Redirect("DisplayProduct");
-        //    }
-
-
-        //    return View();
-        //}
-        //public ActionResult DisplayProduct(int? id, int? page)
-        //{
-        //    int pagesize = 7, pageindex = 1;
-        //    pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
-        //    var list = db.Products.Where(m => m.addadmin_pid == id).OrderByDescending(m => m.P_ID).ToList();
-        //    IPagedList<Product> cate = list.ToPagedList(pageindex, pagesize);
+                Product pr = new Product();
+                pr.P_name = product.P_name;
+                pr.P_image = path;
+                pr.P_desc = product.P_desc;
+                pr.P_price = product.P_price;
+                pr.P_quantity = product.P_quantity;
+                pr.add_pid = product.addadmin_pid;
 
 
-        //    return View(cate);
+                pr.addadmin_pid = Convert.ToInt32(Session["AdminID"].ToString());
+                db.Products.Add(pr);
+                db.SaveChanges();
+
+                Response.Redirect("DisplayProductAdmin");
+            }
 
 
-        //}
-        //[HttpPost]
-        //public ActionResult DisplayProduct(int? id, int? page, string search)
-        //{
-        //    int pagesize = 9, pageindex = 1;
-        //    pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
-        //    var list = db.Products.Where(x => x.P_name.Contains(search)).OrderByDescending(x => x.P_ID).ToList();
-        //    IPagedList<Product> cate = list.ToPagedList(pageindex, pagesize);
-
-        //    return View(cate);
-        //}
+            return View();
 
 
+        }
+        public ActionResult DisplayProductAdmin(int? id, int? page)
+        {
+            TempData.Keep();
+            int pagesize = 7, pageindex = 1;
+            pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
+            var list = db.Products.Where(m => m.addadmin_pid == id).OrderByDescending(m => m.P_ID).ToList();
+            IPagedList<Product> cate = list.ToPagedList(pageindex, pagesize);
+
+
+            return View(cate);
+        }
+        [HttpPost]
+        public ActionResult DisplayProductAdmin(int? id, int? page, string search)
+        {
+            int pagesize = 7, pageindex = 1;
+            pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
+            var list = db.Products.Where(m => m.P_name.Contains(search)).OrderByDescending(m => m.P_ID).ToList();
+            IPagedList<Product> cate = list.ToPagedList(pageindex, pagesize);
+
+            return View(cate);
+        }
+        public ActionResult DisplayDetails(int? id, int? page)
+        {
+           
+                DisplayDetails displayDetails = new DisplayDetails();
+                Product product = db.Products.Where(m => m.P_ID == id).SingleOrDefault();
+                displayDetails.P_ID = product.P_ID;
+                displayDetails.P_name = product.P_name;
+                displayDetails.P_image = product.P_image;
+                displayDetails.P_price = product.P_price;
+                displayDetails.P_desc = product.P_desc;
+                displayDetails.P_quantity = product.P_quantity;
+
+
+                Category category = db.Categories.Where(m => m.Cat_ID == product.add_pid).SingleOrDefault();
+                displayDetails.Cat_name = category.Cat_name;
+
+                //Registration registration = db.Registrations.Where(m => m.custID == product.adduser_pid).SingleOrDefault();
+
+                //displayDetails.email = registration.email;
+                //displayDetails.adduser_pid = registration.custID;
+
+
+
+
+                return View(displayDetails);
+
+
+
+
+           
+          
+        }
+        public ActionResult Delete(int? id)
+        {
+            Product p = db.Products.Where(m => m.P_ID == id).SingleOrDefault();
+            db.Products.Remove(p);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
 
 
 
 
-            public string Uploadimage(HttpPostedFileBase file)
+
+        public string Uploadimage(HttpPostedFileBase file)
             {
             Random r = new Random();
 
@@ -238,6 +276,7 @@ namespace VirtusaProject_HandmadeproductSelling.Controllers
 
 
         }
+        
 
     }
 }

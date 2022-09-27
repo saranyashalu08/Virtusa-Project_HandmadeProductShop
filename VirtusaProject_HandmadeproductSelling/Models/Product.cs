@@ -15,14 +15,22 @@ namespace VirtusaProject_HandmadeproductSelling.Models
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.O_Invoice = new HashSet<O_Invoice>();
+            this.Order_Details = new HashSet<Order_Details>();
+        }
+    
         public int P_ID { get; set; }
-        [Required(ErrorMessage = "Product name")]
+        [Required(ErrorMessage = "Please Enter Product name")]
         public string P_name { get; set; }
-        [Required(ErrorMessage = "Image required")]
+        [Required(ErrorMessage = "Input Image")]
         public string P_image { get; set; }
-        [Required(ErrorMessage = "Enter describtion")]
+        [Required(ErrorMessage = "Please enter description ")]
         public string P_desc { get; set; }
-        [Required(ErrorMessage = "Prize detail is important")]
+        [Required(ErrorMessage = "Enter price details")]
+        [Range(0, 50000, ErrorMessage = "Price not more than 50000")]
         public Nullable<int> P_price { get; set; }
         [Required(ErrorMessage = "Enter available stock")]
         public Nullable<int> P_quantity { get; set; }
@@ -33,5 +41,9 @@ namespace VirtusaProject_HandmadeproductSelling.Models
         public virtual Admin Admin { get; set; }
         public virtual Category Category { get; set; }
         public virtual Registration Registration { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<O_Invoice> O_Invoice { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order_Details> Order_Details { get; set; }
     }
 }

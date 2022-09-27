@@ -38,6 +38,8 @@
     <NavigationProperty Name="Category" Relationship="Self.FK__Product__add_pid__3C34F16F" FromRole="Product" ToRole="Category" />
     <Property Name="adduser_pid" Type="Int32" />
     <NavigationProperty Name="Registration" Relationship="Handmade_ProductModel.FK__Product__adduser__4D5F7D71" FromRole="Product" ToRole="Registration" />
+    <NavigationProperty Name="O_Invoice" Relationship="Handmade_ProductModel.FK__O_Invoice__I_use__625A9A57" FromRole="Product" ToRole="O_Invoice" />
+    <NavigationProperty Name="Order_Details" Relationship="Handmade_ProductModel.FK__Order_Det__o_P_f__65370702" FromRole="Product" ToRole="Order_Details" />
   </EntityType>
   <EntityType Name="Registration">
     <Key>
@@ -52,6 +54,7 @@
     <Property Name="c_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Con_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Products" Relationship="Handmade_ProductModel.FK__Product__adduser__4D5F7D71" FromRole="Registration" ToRole="Product" />
+    <NavigationProperty Name="Order_Details" Relationship="Handmade_ProductModel.FK__Order_Det__o_Use__662B2B3B" FromRole="Registration" ToRole="Order_Details" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -121,6 +124,24 @@
       <End Role="Registration" EntitySet="Registrations" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
+    <EntitySet Name="O_Invoice" EntityType="Handmade_ProductModel.O_Invoice" />
+    <EntitySet Name="Order_Details" EntityType="Handmade_ProductModel.Order_Details" />
+    <AssociationSet Name="FK__O_Invoice__I_use__625A9A57" Association="Handmade_ProductModel.FK__O_Invoice__I_use__625A9A57">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="O_Invoice" EntitySet="O_Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Det__o_inv__671F4F74" Association="Handmade_ProductModel.FK__Order_Det__o_inv__671F4F74">
+      <End Role="O_Invoice" EntitySet="O_Invoice" />
+      <End Role="Order_Details" EntitySet="Order_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Det__o_P_f__65370702" Association="Handmade_ProductModel.FK__Order_Det__o_P_f__65370702">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Order_Details" EntitySet="Order_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Det__o_Use__662B2B3B" Association="Handmade_ProductModel.FK__Order_Det__o_Use__662B2B3B">
+      <End Role="Registration" EntitySet="Registrations" />
+      <End Role="Order_Details" EntitySet="Order_Details" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK__Product__adduser__4D5F7D71">
     <End Type="Handmade_ProductModel.Registration" Role="Registration" Multiplicity="0..1" />
@@ -131,6 +152,80 @@
       </Principal>
       <Dependent Role="Product">
         <PropertyRef Name="adduser_pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="O_Invoice">
+    <Key>
+      <PropertyRef Name="I_Id" />
+    </Key>
+    <Property Name="I_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="I_userfk" Type="Int32" />
+    <Property Name="I_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Product" Relationship="Handmade_ProductModel.FK__O_Invoice__I_use__625A9A57" FromRole="O_Invoice" ToRole="Product" />
+    <NavigationProperty Name="Order_Details" Relationship="Handmade_ProductModel.FK__Order_Det__o_inv__671F4F74" FromRole="O_Invoice" ToRole="Order_Details" />
+  </EntityType>
+  <EntityType Name="Order_Details">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="o_P_fk" Type="Int32" />
+    <Property Name="o_Userfk" Type="Int32" />
+    <Property Name="o_invoicefk" Type="Int32" />
+    <Property Name="o_date" Type="DateTime" Precision="3" />
+    <Property Name="qty" Type="Int32" />
+    <Property Name="bill" Type="Double" />
+    <Property Name="unitprice" Type="Int32" />
+    <NavigationProperty Name="O_Invoice" Relationship="Handmade_ProductModel.FK__Order_Det__o_inv__671F4F74" FromRole="Order_Details" ToRole="O_Invoice" />
+    <NavigationProperty Name="Product" Relationship="Handmade_ProductModel.FK__Order_Det__o_P_f__65370702" FromRole="Order_Details" ToRole="Product" />
+    <NavigationProperty Name="Registration" Relationship="Handmade_ProductModel.FK__Order_Det__o_Use__662B2B3B" FromRole="Order_Details" ToRole="Registration" />
+  </EntityType>
+  <Association Name="FK__O_Invoice__I_use__625A9A57">
+    <End Type="Handmade_ProductModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="Handmade_ProductModel.O_Invoice" Role="O_Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="P_ID" />
+      </Principal>
+      <Dependent Role="O_Invoice">
+        <PropertyRef Name="I_userfk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Det__o_inv__671F4F74">
+    <End Type="Handmade_ProductModel.O_Invoice" Role="O_Invoice" Multiplicity="0..1" />
+    <End Type="Handmade_ProductModel.Order_Details" Role="Order_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="O_Invoice">
+        <PropertyRef Name="I_Id" />
+      </Principal>
+      <Dependent Role="Order_Details">
+        <PropertyRef Name="o_invoicefk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Det__o_P_f__65370702">
+    <End Type="Handmade_ProductModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="Handmade_ProductModel.Order_Details" Role="Order_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="P_ID" />
+      </Principal>
+      <Dependent Role="Order_Details">
+        <PropertyRef Name="o_P_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Det__o_Use__662B2B3B">
+    <End Type="Handmade_ProductModel.Registration" Role="Registration" Multiplicity="0..1" />
+    <End Type="Handmade_ProductModel.Order_Details" Role="Order_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="custID" />
+      </Principal>
+      <Dependent Role="Order_Details">
+        <PropertyRef Name="o_Userfk" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

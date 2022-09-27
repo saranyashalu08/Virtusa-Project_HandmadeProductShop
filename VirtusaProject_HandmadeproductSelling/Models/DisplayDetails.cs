@@ -25,7 +25,7 @@ namespace VirtusaProject_HandmadeproductSelling.Models
         public string Cat_name { get; set; }
 
 
-        public string f_name { get; set; }
+        public string AdminName { get; set; }
 
 
 

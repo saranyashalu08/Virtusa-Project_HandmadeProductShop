@@ -30,4 +30,32 @@ create table Category(Cat_ID int identity primary key,Cat_name varchar(100)not n
 select*from Category
 alter table Category add Cat_status int 
 delete from Category where Cat_ID=10
+-----------------------------Order
 
+create table Order_Details(
+orderID int primary key identity,
+o_P_fk int foreign key references Product(P_ID),
+o_Userfk int foreign key references Registration(custID),
+o_invoicefk int foreign key references O_Invoice(I_Id),
+o_date datetime,
+qty int,
+bill float,
+unitprice int
+
+
+
+)
+select*from Order_Details
+
+
+
+
+
+create table O_Invoice(
+I_Id int primary key identity,
+I_userfk int foreign key references Product(P_ID),
+I_date datetime
+
+
+)
+select*from O_Invoice

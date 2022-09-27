@@ -14,6 +14,12 @@
         <AssociationConnector Association="Handmade_ProductModel.FK__Product__addadmi__3D2915A8" ManuallyRouted="false" />
         <AssociationConnector Association="Handmade_ProductModel.FK__Product__add_pid__3C34F16F" ManuallyRouted="false" />
         <AssociationConnector Association="Handmade_ProductModel.FK__Product__adduser__4D5F7D71" />
+        <EntityTypeShape EntityType="Handmade_ProductModel.O_Invoice" Width="1.5" PointX="7.5" PointY="2" />
+        <EntityTypeShape EntityType="Handmade_ProductModel.Order_Details" Width="1.5" PointX="9.75" PointY="2.75" />
+        <AssociationConnector Association="Handmade_ProductModel.FK__O_Invoice__I_use__625A9A57" />
+        <AssociationConnector Association="Handmade_ProductModel.FK__Order_Det__o_inv__671F4F74" />
+        <AssociationConnector Association="Handmade_ProductModel.FK__Order_Det__o_P_f__65370702" />
+        <AssociationConnector Association="Handmade_ProductModel.FK__Order_Det__o_Use__662B2B3B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
